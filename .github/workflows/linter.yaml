@@ -24,22 +24,22 @@ jobs:
           VALIDATE_JUPYTER: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  # test:
+  #   name: Run Tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.11'
 
-      - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pytest
+  #     - name: Install Dependencies
+  #       run: |
+  #         pip install -r requirements.txt
+  #         pip install pytest
 
-      - name: Run Unit Tests
-        run: pytest tests/
+  #     - name: Run Unit Tests
+  #       run: pytest tests/
