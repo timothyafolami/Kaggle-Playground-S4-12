@@ -15,7 +15,7 @@ numerical_columns = ['id',
         'Credit Score',
         'Insurance Duration'
  ]
-def num_data_nan_cleaner(data):
+def num_data_cleaner(data):
     data = data[numerical_columns]
     """
     Cleans the given dataset by filling missing values according to specific rules:
@@ -66,4 +66,32 @@ def num_data_nan_cleaner(data):
         min_credit_score = data['Credit Score'].min()
         data['Credit Score'] = data['Credit Score'].fillna(min_credit_score)
 
+    return data
+
+def cat_data_cleaner(data):
+    """
+    Fills missing values for categorical columns based on specific logic:
+    - 'Marital Status': Replaced with mode.
+    - 'Occupation': Replaced with 'Unknown'.
+    - 'Customer Feedback': Replaced with 'Average'.
+
+    Args:
+        data (pd.DataFrame): The dataset to process.
+
+    Returns:
+        pd.DataFrame: The dataset with missing values replaced.
+    """
+    # Fill 'Marital Status' with mode
+    if 'Marital Status' in data.columns:
+        marital_mode = data['Marital Status'].mode()[0]
+        data['Marital Status'] = data['Marital Status'].fillna(marital_mode)
+    
+    # Fill 'Occupation' with 'Unknown'
+    if 'Occupation' in data.columns:
+        data['Occupation'] = data['Occupation'].fillna('Unknown')
+    
+    # Fill 'Customer Feedback' with 'Average'
+    if 'Customer Feedback' in data.columns:
+        data['Customer Feedback'] = data['Customer Feedback'].fillna('Average')
+    
     return data
