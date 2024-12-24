@@ -93,7 +93,7 @@ class DateFeatureExtractor(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         for col in X.columns:
-            X = extract_date_info(X, col)  # Reusing the earlier defined function
+            X = extract_date_info(data=X)  # Reusing the earlier defined function
         return X
 
 
@@ -118,7 +118,7 @@ def build_pipeline(raw_data):
         transformers=[
             ('num', num_transformer, list(raw_data.select_dtypes(include=['number']).columns)),
             ('cat', cat_transformer, list(raw_data.select_dtypes(include=['object', 'category']).columns)),
-            ('date', date_transformer, list(raw_data.select_dtypes(include=['datetime64', 'object']).filter(regex="date|Date", axis=1).columns))
+            ('date', date_transformer, list(data=raw_data.select_dtypes(include=['datetime64', 'object']).filter(regex="date|Date", axis=1).columns))
         ]
     )
 
