@@ -8,7 +8,7 @@ from sklearn.preprocessing import FunctionTransformer, OneHotEncoder
 import joblib  
 from data_cleaner import num_data_cleaner, cat_data_cleaner
 
-def extract_date_info(data, date_column):
+def extract_date_info(data, date_column="Policy Start Date"):
     """
     Extracts detailed information from a datetime column and adds it as new columns.
 
